@@ -4,9 +4,6 @@ const app = express();
 const people = require("./routes/people");
 const auth = require("./routes/auth");
 
-const logger = require("./middleware/logger");
-const authorize = require("./authorize");
-
 //static assets
 app.use(express.static("./methods-public")); //NOT ABLE TO FETCH DATA
 //FROM JAVASCRIPT.HTML
@@ -24,11 +21,6 @@ app.use(express.json());
 //this is our base route
 app.use("/api/v1/people", people);
 app.use("/login", auth);
-
-app.get("/api/items", [logger, authorize], (req, res) => {
-  console.log(req.user); //req.user from authorize.js
-  res.send("Items");
-});
 
 /*---this code was moved to auth.js
 app.post("/login", (req, res) => {
