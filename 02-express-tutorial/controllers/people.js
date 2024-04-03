@@ -25,16 +25,6 @@ const createPerson = (req, res) => {
   res.status(201).send({ success: true, person: name }); //201 is a successful post
 };
 
-const createPersonPostman = (req, res) => {
-  const { name } = req.body;
-  if (!name) {
-    return res
-      .status(400)
-      .json({ success: false, msg: "Please Provide Name Value" });
-  }
-  res.status(201).send({ success: true, person: name }); //201 is a successful post
-};
-
 const updatePerson = (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
@@ -46,6 +36,7 @@ const updatePerson = (req, res) => {
       .status(404)
       .json({ success: false, msg: `No person with id ${id}` });
   }
+  person.name = name;
 };
 
 const deletePerson = (req, res) => {
@@ -62,7 +53,6 @@ module.exports = {
   getPerson,
   getPeople,
   createPerson,
-  createPersonPostman,
   updatePerson,
   deletePerson,
 };
