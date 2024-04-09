@@ -1,0 +1,23 @@
+1. In this lesson, you created a middleware function called asyncWrapper. Why?
+    Using the asyncWrapper, we were able to remove the try/catch blocks 
+    and create custom error messages. This is useful when refactoring code because
+    it makes the code more readable as well as having consistant error handling 
+    with all of our controllers.
+
+2. Suppose that you wanted to make sure that both a status code and an error
+    message are sent back to the use when they request the URL for a task that 
+    does not exist. Assume tht you've created a CustomAPIError class and an 
+    errorhandler that references that class. Complete the code:
+    const getTask = asyncWrapper(async(req, res,next) =>{
+        const{ id: taskID } = req.params;
+        const task = await Task.findOne({_id: taskID })
+        if (!task){
+            
+             return next(createCustomError(`No Task With Id: ${taskID}`, 404));
+        }
+        res.status(200).json({ task })
+    });
+
+
+
+    
