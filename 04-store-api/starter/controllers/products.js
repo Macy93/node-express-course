@@ -52,6 +52,7 @@ const getAllProducts = async (req, res) => {
       if (options.includes(field)) {
         queryObject[field] = { [operator]: Number(value) };
       }
+      
     });
   }
   //if the user passes in the sort, we need to chain it//we find, then sort
